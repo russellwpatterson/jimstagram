@@ -1,0 +1,65 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:11.3
+    restart: always
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - lnl-network
+    environment:
+      POSTGRES_USER: Jimstagram
+      POSTGRES_PASSWORD: jimbooktwopointoh
+      POSTGRES_DB: Jimstagram
+
+  posts-api:
+    depends_on:
+      - postgres
+    image: jimstagram-posts:latest
+    restart: always
+    networks:
+      - lnl-network
+    volumes:
+      - ./uploads:/app/wwwroot/uploads
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+
+  auth-api:
+    depends_on:
+      - postgres
+    image: jimstagram-auth:latest
+    restart: always
+    networks:
+      - lnl-network
+
+  likes-api:
+    depends_on:
+      - postgres
+    image: jimstagram-likes:latest
+    restart: always
+    networks:
+      - lnl-network
+    environment:
+      JIMSTAGRAM_PORT: 80
+
+  web-proxy:
+    depends_on:
+      - posts-api
+      - auth-api
+      - likes-api
+    image: jimstagram-web:latest
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - lnl-network
+
+networks:
+  lnl-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+       - subnet: 192.168.98.0/24
