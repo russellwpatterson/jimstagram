@@ -17,7 +17,6 @@ import {
   CREATE_POST,
   DISPLAY_POST,
   SET_USERNAME,
-  CLEAR_USER,
   UPLOAD_IMAGE,
   SET_CURRENT_FILENAME,
 } from './types';
@@ -85,10 +84,6 @@ export default new Vuex.Store({
       if (post) {
         post.notSoGoods++;
       }
-    },
-    [CLEAR_USER](state) {
-      state.accessToken = '';
-      state.username = '';
     },
   },
   actions: {

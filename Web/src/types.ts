@@ -16,7 +16,6 @@ export const NOT_SO_GOOD = 'likes/NOT_SO_GOOD';
 export const LOGIN = 'auth/LOGIN';
 export const SET_ACCESS_TOKEN = 'auth/SET_ACCESS_TOKEN';
 export const SET_USERNAME = 'auth/SET_USERNAME';
-export const CLEAR_USER = 'auth/CLEAR_USER';
 
 export const UPLOAD_IMAGE = 'images/UPLOAD_IMAGE';
 export const SET_CURRENT_FILENAME = 'images/SET_CURRENT_FILENAME';

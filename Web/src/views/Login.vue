@@ -42,7 +42,8 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.$store.commit(types.CLEAR_USER);
+    this.$store.commit(types.SET_USERNAME, '');
+    this.$store.commit(types.SET_ACCESS_TOKEN, '');
   },
 });
 </script>
