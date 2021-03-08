@@ -4,7 +4,8 @@ services:
     image: postgres:11.3
     restart: always
     volumes:
-      - ./pg-data:/var/lib/postgresql/data
+      - pg-data:/var/lib/postgresql/data
+      - ./scripts/0002_create_posts_data.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432
     networks:
@@ -55,6 +56,9 @@ services:
       - 80:80
     networks:
       - lnl-network
+
+volumes:
+  pg-data:
 
 networks:
   lnl-network:

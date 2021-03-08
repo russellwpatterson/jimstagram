@@ -1,4 +1,4 @@
-all: deploy
+all: clean run
 
 run_postgres:
 	- @docker stop postgres
